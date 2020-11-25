@@ -1,0 +1,348 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>{{ object.title }}</title>
+{% endblock title %}
+{% block meta %}
+<meta name="description" content="{{ object.meta_description }}">
+<meta name="keywords" content="{{ object.keywords }}">
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5f52e2692babab00124f8210&product=inline-share-buttons" async="async"></script>
+{% endblock meta %}
+{% block body %}
+    <div class="title-section">
+       <div data-w-id="c8f0aa1d-e0ec-8d59-bb5a-ab5abae6eecd" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); opacity: 1; transform-style: preserve-3d;display: block;" class="container cc-center">
+          <div class="text-container">
+             <a href="{% url 'food_category' object.food_category %}" class="section-title-text w-inline-block">
+                <div class="post-category-text">{{ object.food_category }}</div>
+             </a>
+             <h1 class="h1">{{ object.title }}</h1>
+             <ul role="list" class="list" style="opacity: 70%; font-size: 16px; max-width: 400px; background-color: white;">
+                <li class="list-item"><i class="fas fa-cookie-bite" style="display: block; text-align: center;"></i>{{ object.final_quantity }}</li>
+                <li class="list-item-2"><i class="far fa-clock" style="display: block; text-align: center;"></i>{{ object.total_time }}</li>
+                <li class="list-item-3"><i class="fas fa-fire-alt" style="display: block; text-align: center;"></i>{{ object.calories }}</li>
+            </ul>
+            <div class="left_border"></div>
+             <div class="post-author-text cc-center" style="padding-bottom: 20px;">
+                <div style="background-image:url(&quot;/media/content_images/mateja.jpeg&quot;)" class="author-image-wrapper"></div>
+                <a href="{% url 'about' %}" class="post-author">{{ object.author }}</a>
+             </div>
+          </div>
+          <div class="post-image" style="width: 100%; display: block;">
+            <div class="container cc-post-image" style="display: block;"><img src="{{ object.image.url }}" alt="{{object.image_description }}" style="width:100%; max-height: 470px; object-fit: cover;"></div>
+         </div>
+       </div>
+    </div>
+    <div class="post-content" style="padding-top: 0px;">
+       <div class="post-content-wrapper">
+         <div class="sharethis-inline-share-buttons"></div>
+         <div class="black-button">
+            <a href="#recipe_section" class="footer-title-text w-button" style="color:#ffffff; background-color:#000000; font-size: 18px; border-radius: 3px; display: block; text-align: center; line-height: 20px;">Jump to recipe</a>
+         </div>
+         <div class="rich-text w-richtext">
+            {{ object.text|safe }}
+          </div>
+       </div>
+    </div>
+    <div class="title_recipe" id="recipe_section">
+      <div class="container_recipe cc-center">
+         <div class="text-container" style="background-color: rgb(199, 81, 183); border-top-left-radius: 19px; border-top-right-radius:19px; width: 100%;">
+            <h2 style="margin: 0px; color: white; padding: 10px;">{{ object.title }}</h2>
+            <p style="margin: 0px; color: white; padding: 10px;">{{ object.preview }}</p>
+         </div>
+         <div class="columns w-row">
+            <div class="w-col w-col-6">
+               <ul role="list" class="list-2 w-list-unstyled" style="background-color: rgb(192, 129, 110); color: white; justify-content:space-evenly; border-radius: 15px;">
+                  <li style="text-align: center;"><i class="fas fa-mortar-pestle icon_style"></i><span class="cooking_time">PREP:</span><strong><span class="cooking_time_value"> {{ object.preparation_time }}</span></strong></li>
+                  <li style="text-align: center;"><i class="fas fa-temperature-high icon_style"></i><span class="cooking_time">COOK:</span><strong><span class="cooking_time_value"> {{ object.cooking_time }}</span></strong></li>
+                  <li style="text-align: center;"><i class="far fa-clock icon_style"></i><span class="cooking_time">TOTAL:</span><strong><span class="cooking_time_value"> {{ object.total_time }}</span></strong></li>
+               </ul>
+               <ul role="list" class="list-2 w-list-unstyled">
+                  <li><i class="fas fa-utensils"></i>&nbsp; SERVINGS: {{ object.final_quantity }}</li>
+                  <li><i class="fas fa-fire-alt"></i>&nbsp; CALORIES: {{ object.calories }}</li>
+               </ul>
+               <img src="{{ object.image.url }}" alt="{{object.image_description }}" style="width:100%; max-height: 400px; object-fit: cover; border-radius: 15px;" loading="lazy">
+            </div>
+            <div class="w-col w-col-6">
+               <h3 style="text-align: center; border-bottom: 1px solid black;"><strong>INGREDIENTS</strong></h3>
+               {% for ingredient in ingredients %}
+               {% if ingredient.recipe_part == None %}
+               <ul role="list" class="list-3">
+                  <li>{{ ingredient.quantity }} {{ ingredient.unit }} {{ ingredient.ingredient }}</li>
+               </ul>
+               {% else %}
+               {% ifchanged ingredient.recipe_part %} <h4>{{ ingredient.recipe_part }}</h4> {% endifchanged %}
+               <ul role="list" class="list-3">
+                  <li>{{ ingredient.quantity }} {{ ingredient.unit }} {{ ingredient.ingredient }}</li>
+               </ul>
+               {% endif %}
+               {% endfor %}
+            </div>
+         </div>
+         {% if blogpost.nutritionfact %}
+         {% with blogpost.nutritionfact as nutrition_card %}
+         <!--Start of the nutrition card-->
+               <div class="nutrition_wrapper">
+                  <div id="nutritionfacts">
+                     <table class="nutrition_table" cellspacing="0" cellpadding="0">
+                        <tbody>
+                           <tr>
+                              <td class="header">Nutrition Facts</td>
+                           </tr>
+                           {% if nutrition_card.serving_size %}
+                           <tr>
+                              <td>
+                                 <div class="serving">Per <span class="highlighted">{{ nutrition_card.serving_size }}</span> Serving Size</div>
+                              </td>
+                           </tr>
+                           {% endif %}
+                           <tr style="height: 7px">
+                              <td bgcolor="#000000"></td>
+                           </tr>
+                           <tr>
+                              <td style="font-size: 7pt">
+                                 <div class="line">Amount Per Serving</div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="line">
+                                    <div class="label">
+                                       Calories 
+                                       <div class="weight">{{ nutrition_card.calories }}</div>
+                                    </div>
+                                    <div style="padding-top: 1px; float: right;" class="label">
+                                       Calories from Fat 
+                                       <div class="weight">{{ nutrition_card.calories_from_fat }}</div>
+                                    </div>
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="line">
+                                    <div class="dvlabel">% Daily Value<sup>*</sup></div>
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="line">
+                                    <div class="label">
+                                       Total Fat 
+                                       <div class="weight">{{ nutrition_card.fat }} g</div>
+                                    </div>
+                                    <div class="dv">{{ daily_fat|floatformat:"0" }}%</div>
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="indent">
+                                 <div class="line">
+                                    <div class="labellight">
+                                       Saturated Fat 
+                                       <div class="weight">{{ nutrition_card.saturated_fat }} g</div>
+                                    </div>
+                                    <div class="dv">{{ daily_saturated_fat|floatformat:"0" }}%</div>
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="line">
+                                    <div class="label">
+                                       Cholesterol 
+                                       <div class="weight">{{ nutrition_card.cholesterol }} mg</div>
+                                    </div>
+                                    <div class="dv">{{ daily_cholesterol|floatformat:"0" }}%</div>
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="line">
+                                    <div class="label">
+                                       Sodium 
+                                       <div class="weight">{{ nutrition_card.sodium }} mg</div>
+                                    </div>
+                                    <div class="dv">{{ daily_sodium|floatformat:"0" }}%</div>
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="line">
+                                    <div class="label">
+                                       Potassium 
+                                       <div class="weight">{{ nutrition_card.potassium }} mg</div>
+                                    </div>
+                                    <div class="dv">{{ daily_potassium|floatformat:"0" }}%</div>
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="line">
+                                    <div class="label">
+                                       Total Carbohydrates 
+                                       <div class="weight">{{ nutrition_card.carbohydrates }} g</div>
+                                    </div>
+                                    <div class="dv">{{ daily_carbohydrates|floatformat:"0" }}%</div>
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="indent">
+                                 <div class="line">
+                                    <div class="labellight">
+                                       Dietary Fiber 
+                                       <div class="weight">{{ nutrition_card.fiber }} g</div>
+                                    </div>
+                                    <div class="dv">{{ daily_fiber|floatformat:"0" }}%</div>
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="indent">
+                                 <div class="line">
+                                    <div class="labellight">
+                                       Sugars 
+                                       <div class="weight">{{ nutrition_card.sugar }} g</div>
+                                    </div>
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="line">
+                                    <div class="label">
+                                       Protein 
+                                       <div class="weight">{{ nutrition_card.protein }} g</div>
+                                    </div>
+                                    <div class="dv">{{ daily_protein|floatformat:"0" }}%</div>
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr style="height: 7px">
+                              <td bgcolor="#000000"></td>
+                           </tr>
+                           <tr>
+                                          <td>
+                                             <div class="line">
+                                                <div class="label">
+                                                   Vitamin A
+                                                   <div class="weight">{{ nutrition_card.vitamin_A }} mcg</div>
+                                                </div>
+                                                <div class="dv">{{ daily_vitamin_a|floatformat:"0" }}%</div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>
+                                             <div class="line">
+                                                <div class="label">
+                                                   Calcium
+                                                   <div class="weight">{{ nutrition_card.calcium }} mg</div>
+                                                </div>
+                                                <div class="dv">{{ daily_calcium|floatformat:"0" }}%</div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>
+                                             <div class="line">
+                                                <div class="label">
+                                                   Iron
+                                                   <div class="weight">{{ nutrition_card.iron }} mg</div>
+                                                </div>
+                                                <div class="dv">{{ daily_iron|floatformat:"0" }}%</div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                           <tr>
+                              <td>
+                                 <div class="line">
+                                    <div class="labellight">* Based on a regular 2000 calorie diet
+                                       <br><br><i>Nutritional details are an estimate and should only be used as a guide for approximation.</i>
+                                    </div>
+                                 </div>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               {% endwith %}
+               {% endif %}
+               <!--end of nutrition card-->
+               {% if directions %}
+               <div class="text-container" style="padding: 0px 10px; width: 100%;">
+                  <h3 style="text-align: center;"><strong>DIRECTIONS</strong></h3>
+                  <ol role="list">
+                     {% for direction in directions %}
+                     <li>{{ direction.direction }}</li>
+                     {% endfor %}
+                  </ol>
+               </div>
+         {% endif %}
+      </div>
+   </div>
+    <div class="sharethis-inline-share-buttons"></div>
+    <div class="latest-posts" style="text-align: center;">
+      <div class="container">
+         <div class="section-title-text" style="font-size: 16px;">Enjoyed reading this?</div>
+         <div class="footer-newsletter" style="display: block; text-align: center; margin: 0px auto;">
+            <a href="{% url 'subscribe' %}" class="footer-title-text w-button" style="color:#ffffff; background-color:#000000; font-size: 18px; border-radius: 3px; display: block; text-align: center; line-height: 20px;">Click to Subscribe</a>
+         </div>
+         <div id="disqus_thread" style="padding: 20px 0px"></div>
+         <script>
+         
+         /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+         /*
+         var disqus_config = function () {
+         this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+         this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+         };
+         */
+         (function() { // DON'T EDIT BELOW THIS LINE
+         var d = document, s = d.createElement('script');
+         s.src = 'https://muffinmunchies.disqus.com/embed.js';
+         s.setAttribute('data-timestamp', +new Date());
+         (d.head || d.body).appendChild(s);
+         })();
+         </script>
+         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </div>
+    <div class="separator">
+       <div class="separator-container">
+          <div class="line-color"></div>
+       </div>
+    </div>
+    <div class="latest-posts">
+       <div class="container">
+          <div class="section-title-text">Latest POSTS</div>
+          <div class="posts-wrapper">
+             <div class="posts-collection-list-wrapper w-dyn-list">
+                <div role="list" class="posts-collection-list w-dyn-items w-row">
+                    {% for recipe in other_recipes %}
+                   <div role="listitem" class="_4-collection-item w-dyn-item w-col w-col-3">
+                      <a href="{% url 'recipe' recipe.food_category recipe.title_slug %}" aria-current="page" class="posts-image w-inline-block w--current"><img src="{{ recipe.image.url }}" alt="{{ recipe.image_description }}" style="width: 100%; max-height: 200px; object-fit: cover;"></a>
+                      <div class="post-info-text">
+                         <a href="#" class="category-link">Illustration</a>
+                         <a href="{% url 'recipe' recipe.food_category recipe.title_slug %}" aria-current="page" class="post-title w-inline-block w--current">
+                            <h2 class="h3">{{ recipe.title }}</h2>
+                         </a>
+                         <div class="post-author-text cc-small-thumbnail">
+                            <div class="post-author cc-top-margin">By</div>
+                            <a href="#" class="post-author">{{ recipe.author }}</a>
+                         </div>
+                      </div>
+                   </div>
+                   {% endfor %}
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+{% endblock body %}

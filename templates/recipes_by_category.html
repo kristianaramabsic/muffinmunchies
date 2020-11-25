@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block body %}
+<div style="padding-top: 80px;"></div>
+ {% for category in proba %}
+ <div class="introductory-text" style="padding-top: 20px;">
+    <div class="container">
+       <div class="posts-wrapper cc-top-post">
+          <h1 class="heading" style="text-align: left; border-bottom: 1px solid black;">{{ category.category|title}}</h1>
+       </div>
+    </div>
+ </div>
+ <div class="_3-posts">
+    <div class="container">
+       <div class="posts-wrapper">
+          <div class="posts-collection-list-wrapper w-dyn-list">
+             <div role="list" class="posts-collection-list w-dyn-items w-row">
+                 {% for post in category.blogpost_set.all %}
+                <div role="listitem" class="_3-collection-item w-dyn-item w-col w-col-4">
+                   <a href="{% url 'recipe' post.food_category post.title_slug %}" class="posts-image w-inline-block"><img src="{{ post.image.url }}" alt="{{ post.image_description }}" style="width: 100%; max-height: 300px; object-fit: cover;"></a>
+                   <div class="post-info-text">
+                      <a href="{% url 'recipe' post.food_category post.title_slug %}" class="post-title w-inline-block">
+                         <h3 class="h3">{{ post.title }}</h3>
+                      </a>
+                      <div class="post-short-text">{{ post.preview }}</div>
+                      <div class="post-author-text cc-small-thumbnail">
+                        {% if post.total_time %}
+                         <div class="post-author cc-top-margin" style="font-size: 14px;">Total time:</div>
+                         <div class="post-author" style="font-size: 14px;">{{ post.total_time }}</div>
+                        {% endif %}
+                        {% if post.calories %}
+                        <div class="post-author cc-top-margin" style="font-size: 14px;"> &nbsp;| Calories:</div>
+                        <div class="post-author" style="font-size: 14px;">{{ post.calories }}</div>
+                        {% endif %}
+                      </div>
+                   </div>
+                </div>
+                {% endfor %}
+                <div style="width: 100%;">
+                <div class="footer-newsletter" style="display: block; text-align: center; margin: 0px auto;">
+                  <a href="{% url 'food_category' category.category_url %}" class="footer-title-text w-button" style="color:#ffffff; background-color:#000000; font-size: 18px; border-radius: 3px; display: block; text-align: center; line-height: 20px;">See all {{ category.category }}</a>
+               </div>
+            </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ {% endfor %}
+ <div class="separator">
+    <div class="separator-container">
+       <div class="line-color"></div>
+    </div>
+ </div>
+{% endblock body %}

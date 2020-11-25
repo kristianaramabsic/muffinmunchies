@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>About me</title>
+{% endblock title %}
+{% block meta %}
+<meta name="description" content="A passionate food blogger and photographer bringing you delicious pastry recipes.">
+<meta name="keywords" content="food blog, pastry, recipes, cakes, food photography">
+{% endblock meta %}
+{% block body %}
+{% for about in about_me %}
+    <div class="about-blog">
+       <div class="container cc-center">
+          <div class="w-row">
+             <div class="w-col w-col-9 w-col-small-small-stack">
+                <div class="text-container">
+                   <div class="section-title-big" style="padding-top:100px;">Welcome to MuffinMunchies!</div>
+                   <p class="paragraph">{{ about.full_description|safe }}</p>
+                </div>
+             </div>
+             <div class="w-col w-col-3 w-col-small-small-stack">
+                <div class="white-wrapper" style="padding-top:100px;">
+                    <img src="{{ about.profile_image.url }}" alt="{{ about.image_description }}" class="circle-profile">
+                    <div class="sidebar-copy w-richtext">
+                       <h1>Mateja Kobescak</h1>
+                       <p>{{ about.side_description|safe }}</p>
+                       {% endfor %}
+                    </div>
+                 </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="separator">
+       <div class="separator-container">
+          <div class="line-color"></div>
+       </div>
+    </div>
+    <div class="separator">
+       <div class="separator-container">
+          <div class="line-color"></div>
+       </div>
+    </div>
+    <div id="contact" class="contact">
+       <div class="container">
+          <div class="text-container">
+             <div class="section-title-big">Get in touch</div>
+          </div>
+          <div class="contact-wrapper">
+             <div class="contact-item-wrapper">
+                <div class="contact-item">
+                   <div class="contact-number">
+                      <div class="number">1</div>
+                   </div>
+                   <div class="contact-info-subtitle">EMAIL</div>
+                   <div class="contact-info-text"><a href="mailto: matejakobescak@gmail.com">matejakobescak@gmail.com</a></div>
+                </div>
+             </div>
+                <div class="contact-item-wrapper">
+                   <div class="contact-item">
+                      <div class="contact-number">
+                         <div class="number">2</div>
+                      </div>
+                      <div class="contact-info-subtitle">INSTAGRAM</div>
+                      <div class="contact-info-text"><a href="https://www.instagram.com/muffinmunchies_/">@muffinmunchies_</a></div>
+                   </div>
+                </div>
+            </div>
+          </div>
+       </div>
+    </div>
+{% endblock body %}

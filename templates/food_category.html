@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="introductory-text">
+    <div class="container">
+       <div class="posts-wrapper cc-top-post">
+          <h1 class="heading" style="text-align: left;">{{current_category.category|title}}</h1>
+       </div>
+    </div>
+ </div>
+ <div class="_3-posts">
+    <div class="container">
+       <div class="posts-wrapper">
+          <div class="posts-collection-list-wrapper w-dyn-list">
+             <div role="list" class="posts-collection-list w-dyn-items w-row">
+                 {% for post in food_category %}
+                <div role="listitem" class="_3-collection-item w-dyn-item w-col w-col-4">
+                   <a href="{% url 'recipe' post.food_category post.title_slug %}" class="posts-image w-inline-block"><img src="{{ post.image.url }}" alt="{{ post.image_description }}" style="width: 100%; max-height: 300px; object-fit: cover;"></a>
+                   <div class="post-info-text">
+                      <a href="{% url 'recipe' post.food_category post.title_slug %}" class="post-title w-inline-block">
+                         <h3 class="h3">{{ post.title }}</h3>
+                      </a>
+                      <div class="post-short-text">{{ post.preview }}</div>
+                      <div class="post-author-text cc-small-thumbnail">
+                        {% if post.total_time %}
+                         <div class="post-author cc-top-margin" style="font-size: 14px;">Total time:</div>
+                         <div class="post-author" style="font-size: 14px;">{{ post.total_time }}</div>
+                        {% endif %}
+                        {% if post.calories %}
+                        <div class="post-author cc-top-margin" style="font-size: 14px;"> &nbsp;| Calories:</div>
+                        <div class="post-author" style="font-size: 14px;">{{ post.calories }}</div>
+                        {% endif %}
+                      </div>
+                   </div>
+                </div>
+                {% endfor %}
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ <div class="separator">
+    <div class="separator-container">
+       <div class="line-color"></div>
+    </div>
+ </div>
+{% endblock body %}

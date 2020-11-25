@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>You've subscribed successfully!</title>
+{% endblock title %}
+{% block meta %}
+<meta name="description" content="A passionate food blogger and photographer bringing you delicious pastry recipes.">
+<meta name="keywords" content="food blog, pastry, recipes, cakes, food photography">
+{% endblock meta %}
+{% block body %}
+<div class="introductory-text" style="padding-left:8px; padding-right:8px; padding-bottom: 350px;">
+    <div class="container">
+       <div class="posts-wrapper cc-top-post">
+          <h1 class="heading" style="text-align: center;">You have successfully subscribed!</h1>
+          <meta http-equiv="refresh" content="2;url={% url 'homepage' %}"> 
+       </div>
+    </div>
+ </div>
+{% endblock body %}

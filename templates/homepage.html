@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Muffin Munchies</title>
+{% endblock title %}
+{% block meta %}
+<meta name="description" content="Food blog writing about pastry: muffins, cakes, pancakes">
+<meta name="keywords" content="food blog, muffins, cakes, pancakes, pastry">
+{% endblock meta %}
+{% block body %}
+      <div class="introductory-text">
+         <div class="container">
+            <div class="posts-wrapper cc-top-post">
+               <h1 class="heading">Cool pastry recipes and beautiful images.</h1>
+            </div>
+         </div>
+      </div>
+      <div class="separator">
+         <div class="separator-container">
+            <div class="line-color"></div>
+         </div>
+      </div>
+      <div class="top-post">
+         <div class="container">
+            <div class="posts-wrapper cc-top-post">
+               <div class="w-dyn-list">
+                  <div role="list" class="w-dyn-items">
+                     <div role="listitem" class="top-post-item w-dyn-item">
+                        <a href="{% url 'recipe' most_recent_post.food_category most_recent_post.title_slug %}" class="top-post-image w-inline-block"><img src="{{ most_recent_post.image.url }}" alt="{{ most_recent_post.image_description }}" class="post-image" style="width:100%; max-height: 470px; object-fit: cover;"></a>
+                        <div class="top-post-text">
+                            {% if most_recent_post %}
+                           <a href="{% url 'food_category' most_recent_post.food_category %}" class="category-link">{{ most_recent_post.food_category }}</a>
+                           <a href="{% url 'recipe' most_recent_post.food_category most_recent_post.title_slug %}" class="top-post-link-block w-inline-block">
+                              <h2 class="h2">{{ most_recent_post.title}}</h2>
+                           </a>
+                           <div class="post-short-text">{{ most_recent_post.preview }}</div>
+                           <div class="post-author-text">
+                              <div class="post-author cc-top-margin">By</div>
+                              <a href="{% url 'about' %}" class="post-author">{{ most_recent_post.author }}</a>
+                           </div>
+                           {% endif %}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="_3-posts">
+         <div class="container">
+            <div class="posts-wrapper">
+               <div class="posts-collection-list-wrapper w-dyn-list">
+                  <div role="list" class="posts-collection-list w-dyn-items w-row">
+                      {% for post in other_posts %}
+                     <div role="listitem" class="_3-collection-item w-dyn-item w-col w-col-4">
+                        <a href="{% url 'recipe' post.food_category post.title_slug %}" class="posts-image w-inline-block"><img src="{{ post.image.url }}" alt="{{ post.image_description }}" style="width:100%; max-height: 300px; object-fit: cover;"></a>
+                        <div class="post-info-text">
+                           <a href="{% url 'food_category' post.food_category %}" class="category-link">{{ post.food_category }}</a>
+                           <a href="{% url 'recipe' post.food_category post.title_slug %}" class="post-title w-inline-block">
+                              <h3 class="h3">{{ post.title }}</h3>
+                           </a>
+                           <div class="post-author-text cc-small-thumbnail">
+                              <div class="post-author cc-top-margin">By</div>
+                              <a href="#" class="post-author">{{ post.author }}</a>
+                           </div>
+                        </div>
+                     </div>
+                     {% endfor %}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="separator">
+         <div class="separator-container">
+            <div class="line-color"></div>
+         </div>
+      </div>
+{% endblock body %}

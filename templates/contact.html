@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>About me</title>
+{% endblock title %}
+{% block meta %}
+<meta name="description" content="A passionate food blogger and photographer bringing you delicious pastry recipes.">
+<meta name="keywords" content="food blog, pastry, recipes, cakes, food photography">
+{% endblock meta %}
+{% block body %}
+<div class="introductory-text" style="padding-left:8px; padding-right:8px;">
+    <div class="container">
+       <div class="posts-wrapper cc-top-post">
+          <h1 class="heading" style="text-align: center;">Welcome to MuffinMunchies!</h1>
+       </div>
+    </div>
+ </div>
+<div class="about-blog" style="padding-top: 20px;">
+   <div class="container cc-center">
+      <div class="w-row">
+         <div class="w-col w-col-11 w-col-small-small-stack">
+             <p>If you have any questions regarding the recipes, you're interested
+                in working with me or you just want to say hello - feel free to contact 
+                me via this form or by sending e-mail or on Instagram. I'd love to hear from you!</p>
+            <div class="text-container" style="width:100%;word-break: break-all;">
+               <form method="post">{% csrf_token %}
+                {{ form | crispy }}
+                <input type="submit" value="Submit" class="submit-button w-button">
+            </form>
+            </div>
+            <div class="separator">
+                <div class="separator-container" style="padding-bottom: 60px;">
+                </div>
+             </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="separator">
+   <div class="separator-container">
+      <div class="line-color"></div>
+   </div>
+</div>
+<div id="contact" class="contact">
+   <div class="container">
+      <div class="text-container">
+         <div class="section-title-big">Get in touch via E-mail and Instagram</div>
+      </div>
+      <div class="contact-wrapper">
+         <div class="contact-item-wrapper">
+            <div class="contact-item">
+               <div class="contact-number">
+                  <div class="number">1</div>
+               </div>
+               <div class="contact-info-subtitle">EMAIL</div>
+               <div class="contact-info-text"><a href="mailto: matejakobescak@gmail.com">matejakobescak@gmail.com</a></div>
+            </div>
+         </div>
+            <div class="contact-item-wrapper">
+               <div class="contact-item">
+                  <div class="contact-number">
+                     <div class="number">2</div>
+                  </div>
+                  <div class="contact-info-subtitle">INSTAGRAM</div>
+                  <div class="contact-info-text"><a href="https://www.instagram.com/muffinmunchies_/">@muffinmunchies_</a></div>
+               </div>
+            </div>
+        </div>
+      </div>
+   </div>
+</div>
+{% endblock body %}
