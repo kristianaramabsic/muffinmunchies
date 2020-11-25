@@ -126,7 +126,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = "/home/kikicic/_labzlink/staticfiles_production/"
+STATIC_ROOT = "/home/muffinmunchies/muffinmunhies/staticfiles_production/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #settings for django-summernote
