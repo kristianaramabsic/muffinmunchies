@@ -22,6 +22,7 @@ class HomePageView (ListView):
        ctx['most_recent_post'] = BlogPost.objects.order_by('-date')[0]
        ctx['other_posts'] = BlogPost.objects.all().order_by('-date')[1:]
        ctx['food_categories'] = FoodCategory.objects.all()
+       ctx['about_me'] = AboutMe.objects.all()
        return ctx
 
 class RecipeView (DetailView):

@@ -195,7 +195,7 @@ body {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  border: 1px solid #000;
+  border: 1px solid #999;
   border-radius: 19px;
   text-align: left;
 }
@@ -224,7 +224,7 @@ body {
   flex: 0 auto;
   border-style: solid none;
   border-width: 1px;
-  border-color: #000;
+  border-color: #999;
 }
 .cooking_time {
   display: block; 
@@ -2670,6 +2670,17 @@ textarea.w-select {
     font-weight: 400;
     letter-spacing: -0.5px;
   }
+
+  .circle-profile-homepage {
+    display: inline;
+    border-radius: 500px;
+  }
+
+.button-hover:hover {
+  background-color: #999;
+  color: white;
+
+}
 
   .circle-profile {
     display: block;

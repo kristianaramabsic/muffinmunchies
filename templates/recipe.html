@@ -35,7 +35,7 @@
        <div class="post-content-wrapper">
          <div class="sharethis-inline-share-buttons"></div>
          <div class="black-button">
-            <a href="#recipe_section" class="footer-title-text w-button" style="color:#ffffff; background-color:#000000; font-size: 18px; border-radius: 3px; display: block; text-align: center; line-height: 20px;">Jump to recipe</a>
+            <a href="#recipe_section" class="footer-title-text category-link button-hover" style="border: 1px solid #999; text-decoration: none; padding: 5px 15px; font-size: 18px; border-radius: 3px; display: block; text-align: center; line-height: 20px;">Jump to recipe</a>
          </div>
          <div class="rich-text w-richtext">
             {{ object.text|safe }}
@@ -44,13 +44,13 @@
     </div>
     <div class="title_recipe" id="recipe_section">
       <div class="container_recipe cc-center">
-         <div class="text-container" style="background-color: rgb(199, 81, 183); border-top-left-radius: 19px; border-top-right-radius:19px; width: 100%;">
-            <h2 style="margin: 0px; color: white; padding: 10px;">{{ object.title }}</h2>
-            <p style="margin: 0px; color: white; padding: 10px;">{{ object.preview }}</p>
+         <div class="text-container" style="border-top-left-radius: 19px; border-top-right-radius:19px; width: 100%;">
+            <h2 style="margin: 0px; padding: 10px;">{{ object.title }}</h2>
+            <p style="margin: 0px; padding: 10px;">{{ object.preview }}</p>
          </div>
          <div class="columns w-row">
             <div class="w-col w-col-6">
-               <ul role="list" class="list-2 w-list-unstyled" style="background-color: rgb(192, 129, 110); color: white; justify-content:space-evenly; border-radius: 15px;">
+               <ul role="list" class="list-2 w-list-unstyled" style="background-color: #999; color: white; justify-content:space-evenly; border-radius: 15px;">
                   <li style="text-align: center;"><i class="fas fa-mortar-pestle icon_style"></i><span class="cooking_time">PREP:</span><strong><span class="cooking_time_value"> {{ object.preparation_time }}</span></strong></li>
                   <li style="text-align: center;"><i class="fas fa-temperature-high icon_style"></i><span class="cooking_time">COOK:</span><strong><span class="cooking_time_value"> {{ object.cooking_time }}</span></strong></li>
                   <li style="text-align: center;"><i class="far fa-clock icon_style"></i><span class="cooking_time">TOTAL:</span><strong><span class="cooking_time_value"> {{ object.total_time }}</span></strong></li>
@@ -62,7 +62,7 @@
                <img src="{{ object.image.url }}" alt="{{object.image_description }}" style="width:100%; max-height: 400px; object-fit: cover; border-radius: 15px;" loading="lazy">
             </div>
             <div class="w-col w-col-6">
-               <h3 style="text-align: center; border-bottom: 1px solid black;"><strong>INGREDIENTS</strong></h3>
+               <h3 style="text-align: center; border-bottom: 1px solid #999;"><strong>INGREDIENTS</strong></h3>
                {% for ingredient in ingredients %}
                {% if ingredient.recipe_part == None %}
                <ul role="list" class="list-3">
