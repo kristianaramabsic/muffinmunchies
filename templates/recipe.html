@@ -58,7 +58,7 @@
          "name": "{{ direction.direction_name }}",
          {% endif %}
          "text": "{{ direction.direction }}",
-         "url": "{{ request.path }}#step{{ forloop.counter }}"
+         "url": "https://www.muffinmunchies.com/{{ object.food_category }}/{{ object.title_slug }}#step{{ forloop.counter }}"
        }
       {% else %}
       {
@@ -67,36 +67,11 @@
          "name": "{{ direction.direction_name }}",
          {% endif %}
          "text": "{{ direction.direction }}",
-         "url": "{{ request.get_full_path }}#step{{ forloop.counter }}"
+         "url": "https://www.muffinmunchies.com/{{ object.food_category }}/{{ object.title_slug }}#step{{ forloop.counter }}"
        },
       {% endif %}
       {% endfor %}
-     ],
-     "aggregateRating": {
-       "@type": "AggregateRating",
-       "ratingValue": "5",
-       "ratingCount": "18"
-     },
-     "video": {
-       "@type": "VideoObject",
-       "name": "How to make a Party Coffee Cake",
-       "description": "This is how you make a Party Coffee Cake.",
-       "thumbnailUrl": [
-         "https://example.com/photos/1x1/photo.jpg",
-         "https://example.com/photos/4x3/photo.jpg",
-         "https://example.com/photos/16x9/photo.jpg"
-        ],
-       "contentUrl": "http://www.example.com/video123.mp4",
-       "embedUrl": "http://www.example.com/videoplayer?video=123",
-       "uploadDate": "2018-02-05T08:00:00+08:00",
-       "duration": "PT1M33S",
-       "interactionStatistic": {
-         "@type": "InteractionCounter",
-         "interactionType": { "@type": "http://schema.org/WatchAction" },
-         "userInteractionCount": 2347
-       },
-       "expires": "2019-02-05T08:00:00+08:00"
-     }
+     ]
    }
    </script>
 {% endblock jsonld %}
