@@ -23,6 +23,7 @@ class BlogPost(models.Model):
     title = models.CharField(max_length=400)
     title_slug = models.SlugField(max_length=60)
     meta_description = models.CharField(max_length=160)
+    keywords = models.CharField(max_length=200, blank=True, null=True)
     preview = models.CharField(max_length=180)
     calories = models.CharField(max_length=20, blank=True, null=True)
     preparation_time = models.CharField(max_length=20)

@@ -7,6 +7,99 @@
 <meta name="keywords" content="{{ object.keywords }}">
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5f52e2692babab00124f8210&product=inline-share-buttons" async="async"></script>
 {% endblock meta %}
+{% block jsonld %}
+<script type="application/ld+json">
+   {
+     "@context": "https://schema.org/",
+     "@type": "Recipe",
+     "name": "{{ object.title }}",
+     {% spaceless %}
+     {% if object.image %}
+     "image": [
+       "https://www.muffinmunchies.com{{ object.image.url }}"
+     ],
+     {% endif %}
+     {% endspaceless %}
+     "author": {
+       "@type": "Person",
+       "name": "{{ object.author }}"
+     },
+     "datePublished": "{{ object.date }}",
+     "description": "{{ object.preview }}",
+     "prepTime": "{{ object.preparation_time }}",
+     "cookTime": "{{ object.cooking_time }}",
+     "totalTime": "{{ object.total_time }}",
+     {% spaceless %}
+     {% if object.keywords %}
+     "keywords": "{{ object.keywords }}",
+     {% endif %}
+     {% endspaceless %}
+     "recipeYield": "{{ object.final_quantity }}",
+     "recipeCategory": "{{ object.food_category }}",
+     "nutrition": {
+       "@type": "NutritionInformation",
+       "calories": "{{ object.calories }} calories"
+     },
+     "recipeIngredient": [
+     {% for ingredient in ingredients %}
+     {% if forloop.last %}
+     "{{ ingredient.quantity }} {{ ingredient.unit }} {{ ingredient.ingredient }}"
+     {% else %}
+     "{{ ingredient.quantity }} {{ ingredient.unit }} {{ ingredient.ingredient }}",
+     {% endif %}
+     {% endfor %}
+       ],
+     "recipeInstructions": [
+     {% for direction in directions %}
+     {% if forloop.last %}
+       {
+         "@type": "HowToStep",
+         {% if direction.direction_name %}
+         "name": "{{ direction.direction_name }}",
+         {% endif %}
+         "text": "{{ direction.direction }}",
+         "url": "{{ request.path }}#step{{ forloop.counter }}"
+       }
+      {% else %}
+      {
+         "@type": "HowToStep",
+         {% if direction.direction_name %}
+         "name": "{{ direction.direction_name }}",
+         {% endif %}
+         "text": "{{ direction.direction }}",
+         "url": "{{ request.get_full_path }}#step{{ forloop.counter }}"
+       },
+      {% endif %}
+      {% endfor %}
+     ],
+     "aggregateRating": {
+       "@type": "AggregateRating",
+       "ratingValue": "5",
+       "ratingCount": "18"
+     },
+     "video": {
+       "@type": "VideoObject",
+       "name": "How to make a Party Coffee Cake",
+       "description": "This is how you make a Party Coffee Cake.",
+       "thumbnailUrl": [
+         "https://example.com/photos/1x1/photo.jpg",
+         "https://example.com/photos/4x3/photo.jpg",
+         "https://example.com/photos/16x9/photo.jpg"
+        ],
+       "contentUrl": "http://www.example.com/video123.mp4",
+       "embedUrl": "http://www.example.com/videoplayer?video=123",
+       "uploadDate": "2018-02-05T08:00:00+08:00",
+       "duration": "PT1M33S",
+       "interactionStatistic": {
+         "@type": "InteractionCounter",
+         "interactionType": { "@type": "http://schema.org/WatchAction" },
+         "userInteractionCount": 2347
+       },
+       "expires": "2019-02-05T08:00:00+08:00"
+     }
+   }
+   </script>
+{% endblock jsonld %}
 {% block body %}
     <div class="title-section">
        <div data-w-id="c8f0aa1d-e0ec-8d59-bb5a-ab5abae6eecd" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); opacity: 1; transform-style: preserve-3d;display: block;" class="container cc-center">
@@ -19,7 +112,7 @@
                 <li class="list-item"><i class="fas fa-cookie-bite" style="display: block; text-align: center;"></i>{{ object.final_quantity }}</li>
                 <li class="list-item-2"><i class="far fa-clock" style="display: block; text-align: center;"></i>{{ object.total_time }}</li>
                 {% if object.calories %}
-                <li class="list-item-3"><i class="fas fa-fire-alt" style="display: block; text-align: center;"></i>{{ object.calories }}</li>
+                <li class="list-item-3"><i class="fas fa-fire-alt" style="display: block; text-align: center;"></i>{{ object.calories }} cal</li>
                 {% endif %}
             </ul>
             <div class="left_border"></div>
@@ -282,7 +375,7 @@
                   <h3 style="text-align: center;"><strong>DIRECTIONS</strong></h3>
                   <ol role="list">
                      {% for direction in directions %}
-                     <li>{{ direction.direction }}</li>
+                     <li id="step{{forloop.counter}}">{{ direction.direction }}</li>
                      {% endfor %}
                   </ol>
                </div>

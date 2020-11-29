@@ -28,7 +28,7 @@ class BlogPostAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
     summernote_fields = '__all__'
     prepopulated_fields = {"title_slug": ("title",)}
     fieldsets = [
-        (None, {'fields': ['author', 'food_category', 'title', 'title_slug', 'preview', 'meta_description']}),
+        (None, {'fields': ['author', 'food_category', 'title', 'title_slug', 'preview', 'meta_description', 'keywords']}),
         ('Post Image', {'fields': ['image', 'image_description']}),
         ('Body of the post', {'fields': ['text']}),
         ('Recipe', {'fields': ['final_quantity','calories','preparation_time','cooking_time','total_time']}),
