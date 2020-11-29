@@ -18,7 +18,9 @@
              <ul role="list" class="list" style="opacity: 70%; font-size: 16px; max-width: 400px; background-color: white;">
                 <li class="list-item"><i class="fas fa-cookie-bite" style="display: block; text-align: center;"></i>{{ object.final_quantity }}</li>
                 <li class="list-item-2"><i class="far fa-clock" style="display: block; text-align: center;"></i>{{ object.total_time }}</li>
+                {% if object.calories %}
                 <li class="list-item-3"><i class="fas fa-fire-alt" style="display: block; text-align: center;"></i>{{ object.calories }}</li>
+                {% endif %}
             </ul>
             <div class="left_border"></div>
              <div class="post-author-text cc-center" style="padding-bottom: 20px;">
@@ -57,7 +59,9 @@
                </ul>
                <ul role="list" class="list-2 w-list-unstyled">
                   <li><i class="fas fa-utensils"></i>&nbsp; SERVINGS: {{ object.final_quantity }}</li>
+                  {% if object.calories %}
                   <li><i class="fas fa-fire-alt"></i>&nbsp; CALORIES: {{ object.calories }}</li>
+                  {% endif %}
                </ul>
                <img src="{{ object.image.url }}" alt="{{object.image_description }}" style="width:100%; max-height: 400px; object-fit: cover; border-radius: 15px;" loading="lazy">
             </div>

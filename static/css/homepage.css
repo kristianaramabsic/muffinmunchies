@@ -100,7 +100,6 @@ body {
 
 .list-item-2 {
   padding-right: 10px;
-  border-right: 1px solid #000;
   border-top-right-radius: 0px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -113,6 +112,7 @@ body {
 
 .list-item-3 {
   padding-right: 10px;
+  border-left: 1px solid #000;
 }
 .list {
   position: static;

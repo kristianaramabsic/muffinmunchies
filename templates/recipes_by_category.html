@@ -35,10 +35,12 @@
                    </div>
                 </div>
                 {% endfor %}
+                {% if category.blogpost_set.count > 3 %}
                 <div style="width: 100%;">
                 <div class="footer-newsletter" style="display: block; text-align: center; margin: 0px auto;">
                   <a href="{% url 'food_category' category.category_url %}" class="button-hover footer-title-text category-link" style="border: 1px solid #999; font-size: 18px; border-radius: 15px; padding: 5px 15px; display: block; text-align: center; line-height: 20px; text-decoration: none;">See all {{ category.category }}</a>
                </div>
+               {% endif %}
             </div>
                 </div>
              </div>
