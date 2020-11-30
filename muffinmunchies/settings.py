@@ -38,12 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', # for sitemaps
+    'django.contrib.sitemaps', # for sitemaps
     #thirdparty
     'django_summernote',
     'crispy_forms',
     #myapps
     'blog.apps.BlogConfig',
 ]
+
+SITE_ID = 1 #added when sitemaps were being set up
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
