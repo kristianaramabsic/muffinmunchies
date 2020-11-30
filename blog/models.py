@@ -33,7 +33,8 @@ class BlogPost(models.Model):
     text = models.TextField()
 
     def get_absolute_url (self):
-        return reverse ('recipe', args=[str(self.title)])
+        category = slugify(self.food_category)
+        return reverse ('recipe', args=[str(category),str(self.title_slug)])
 
     def __str__(self):
         return self.title

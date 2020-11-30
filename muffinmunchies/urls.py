@@ -17,11 +17,21 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps import GenericSitemap
+from django.contrib.sitemaps.views import sitemap
+from blog.models import BlogPost
+
+info_dict = {
+    'queryset': BlogPost.objects.all(),
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
     path('', include('blog.urls')),
+    path('sitemap.xml', sitemap, # new
+        {'sitemaps': {'blog': GenericSitemap(info_dict, priority=0.8)}},
+        name='django.contrib.sitemaps.views.sitemap'),
 ]
 
 if settings.DEBUG:

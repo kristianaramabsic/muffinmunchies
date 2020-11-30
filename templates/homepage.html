@@ -35,11 +35,11 @@
                <div class="w-dyn-list">
                   <div role="list" class="w-dyn-items">
                      <div role="listitem" class="top-post-item w-dyn-item">
-                        <a href="{% url 'recipe' most_recent_post.food_category most_recent_post.title_slug %}" class="top-post-image w-inline-block"><img src="{{ most_recent_post.image.url }}" alt="{{ most_recent_post.image_description }}" class="post-image" style="width:100%; max-height: 470px; object-fit: cover; border-radius: 15px;"></a>
+                        <a href="{% url 'recipe' most_recent_post.food_category.category_url most_recent_post.title_slug %}" class="top-post-image w-inline-block"><img src="{{ most_recent_post.image.url }}" alt="{{ most_recent_post.image_description }}" class="post-image" style="width:100%; max-height: 470px; object-fit: cover; border-radius: 15px;"></a>
                         <div class="top-post-text">
                             {% if most_recent_post %}
-                           <a href="{% url 'food_category' most_recent_post.food_category %}" class="category-link">{{ most_recent_post.food_category }}</a>
-                           <a href="{% url 'recipe' most_recent_post.food_category most_recent_post.title_slug %}" class="top-post-link-block w-inline-block">
+                           <a href="{% url 'food_category' most_recent_post.food_category.category_url %}" class="category-link">{{ most_recent_post.food_category }}</a>
+                           <a href="{% url 'recipe' most_recent_post.food_category.category_url most_recent_post.title_slug %}" class="top-post-link-block w-inline-block">
                               <h2 class="h2">{{ most_recent_post.title}}</h2>
                            </a>
                            <div class="post-short-text">{{ most_recent_post.preview }}</div>
