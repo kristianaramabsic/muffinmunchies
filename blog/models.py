@@ -18,6 +18,8 @@ class BlogPost(models.Model):
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     food_category = models.ForeignKey('FoodCategory', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='content_images', blank=True)
+    medium_image = models.ImageField(upload_to='content_images', blank=True, null=True)
+    small_image = models.ImageField(upload_to='content_images', blank=True, null=True)
     image_description = models.CharField(max_length=130)
     date = models.DateTimeField (auto_now_add=True)
     title = models.CharField(max_length=400)
