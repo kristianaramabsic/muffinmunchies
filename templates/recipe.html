@@ -77,6 +77,13 @@
 {% endblock jsonld %}
 {% block body %}
     <div class="title-section">
+                    <div style="text-align: center;">
+               {% for food_category in food_categories %}
+               <div style="margin-bottom: 15px; display: inline-block;">
+                  <a href="{% url 'food_category' food_category.category_url %}" class="category-link button-hover" style="border: 1px solid #999; border-radius: 15px; padding: 5px 15px; text-decoration: none; font-size: 14px; margin: 5px;">{{ food_category.category|upper }}</a>
+               </div>
+               {% endfor %}
+            </div>
        <div data-w-id="c8f0aa1d-e0ec-8d59-bb5a-ab5abae6eecd" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); opacity: 1; transform-style: preserve-3d;display: block;" class="container cc-center">
           <div class="text-container">
              <a href="{% url 'food_category' object.food_category.category_url %}" class="section-title-text w-inline-block">
@@ -178,11 +185,11 @@
                               <td>
                                  <div class="line">
                                     <div class="label">
-                                       Calories 
+                                       Calories
                                        <div class="weight">{{ nutrition_card.calories }}</div>
                                     </div>
                                     <div style="padding-top: 1px; float: right;" class="label">
-                                       Calories from Fat 
+                                       Calories from Fat
                                        <div class="weight">{{ nutrition_card.calories_from_fat }}</div>
                                     </div>
                                  </div>
@@ -199,7 +206,7 @@
                               <td>
                                  <div class="line">
                                     <div class="label">
-                                       Total Fat 
+                                       Total Fat
                                        <div class="weight">{{ nutrition_card.fat }} g</div>
                                     </div>
                                     <div class="dv">{{ daily_fat|floatformat:"0" }}%</div>
@@ -210,7 +217,7 @@
                               <td class="indent">
                                  <div class="line">
                                     <div class="labellight">
-                                       Saturated Fat 
+                                       Saturated Fat
                                        <div class="weight">{{ nutrition_card.saturated_fat }} g</div>
                                     </div>
                                     <div class="dv">{{ daily_saturated_fat|floatformat:"0" }}%</div>
@@ -221,7 +228,7 @@
                               <td>
                                  <div class="line">
                                     <div class="label">
-                                       Cholesterol 
+                                       Cholesterol
                                        <div class="weight">{{ nutrition_card.cholesterol }} mg</div>
                                     </div>
                                     <div class="dv">{{ daily_cholesterol|floatformat:"0" }}%</div>
@@ -232,7 +239,7 @@
                               <td>
                                  <div class="line">
                                     <div class="label">
-                                       Sodium 
+                                       Sodium
                                        <div class="weight">{{ nutrition_card.sodium }} mg</div>
                                     </div>
                                     <div class="dv">{{ daily_sodium|floatformat:"0" }}%</div>
@@ -243,7 +250,7 @@
                               <td>
                                  <div class="line">
                                     <div class="label">
-                                       Potassium 
+                                       Potassium
                                        <div class="weight">{{ nutrition_card.potassium }} mg</div>
                                     </div>
                                     <div class="dv">{{ daily_potassium|floatformat:"0" }}%</div>
@@ -254,7 +261,7 @@
                               <td>
                                  <div class="line">
                                     <div class="label">
-                                       Total Carbohydrates 
+                                       Total Carbohydrates
                                        <div class="weight">{{ nutrition_card.carbohydrates }} g</div>
                                     </div>
                                     <div class="dv">{{ daily_carbohydrates|floatformat:"0" }}%</div>
@@ -265,7 +272,7 @@
                               <td class="indent">
                                  <div class="line">
                                     <div class="labellight">
-                                       Dietary Fiber 
+                                       Dietary Fiber
                                        <div class="weight">{{ nutrition_card.fiber }} g</div>
                                     </div>
                                     <div class="dv">{{ daily_fiber|floatformat:"0" }}%</div>
@@ -276,7 +283,7 @@
                               <td class="indent">
                                  <div class="line">
                                     <div class="labellight">
-                                       Sugars 
+                                       Sugars
                                        <div class="weight">{{ nutrition_card.sugar }} g</div>
                                     </div>
                                  </div>
@@ -286,7 +293,7 @@
                               <td>
                                  <div class="line">
                                     <div class="label">
-                                       Protein 
+                                       Protein
                                        <div class="weight">{{ nutrition_card.protein }} g</div>
                                     </div>
                                     <div class="dv">{{ daily_protein|floatformat:"0" }}%</div>
@@ -366,7 +373,7 @@
          </div>
          <div id="disqus_thread" style="padding: 20px 0px"></div>
          <script>
-         
+
          /**
          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/

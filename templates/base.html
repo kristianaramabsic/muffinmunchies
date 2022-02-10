@@ -29,9 +29,9 @@
    </head>
    <body>
     <div data-collapse="medium" data-animation="default" data-duration="400" role="banner" class="navigation w-nav">
-       <div class="navigation-container">
+       <div class="navigation-container" style="max-height:170px;">
            <!--insert logo image-->
-          <a href="/" aria-current="page" class="logo w-inline-block w--current"><img src="#" alt="" class="image-logo"></a>
+          <a href="/" aria-current="page" class="logo w-inline-block w--current" style="max-width: 100%; height: auto;"><img src="{% static 'images/muffinmunchies-logos_transparent.png' %}" alt="muffinmunchies logo" style="max-width: 400px; max-height: 200px; widht: 100%; height: auto;" class="image-logo"/></a>
           <nav role="navigation" class="nav-menu w-nav-menu">
              <a href="{% url 'homepage' %}" aria-current="page" class="navigation-link w-inline-block w--current">
                 <div class="navigation-hover" style="opacity: 0; height: 0px;"></div>
@@ -63,7 +63,6 @@
            <div class="container">
               <div class="top-section">
                   <!--Insert logo-->
-                 <a href="#" class="logo cc-footer w-inline-block"><img src="#" alt="" class="image-logo"></a>
                  <div class="footer-small-text">© 2020 Muffin Munchies, all rights reserved</div>
               </div>
            </div>

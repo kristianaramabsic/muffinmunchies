@@ -9,12 +9,6 @@
 {% block body %}
       <div class="introductory-text">
          <div class="container">
-            <div>
-               {% for about in about_me %}
-               <img src="{{ about.profile_image.url }}" alt="{{ about.image_description }}" class="circle-profile-homepage" style="width:90px; max-height: 100px; object-fit: cover;vertical-align: top; float: left; margin-bottom: 3px; margin-right: 12px;">
-               {{ about.side_description|safe }}
-               {% endfor %}
-            </div> 
             <div style="text-align: center;">
                {% for food_category in food_categories %}
                <div style="margin-bottom: 15px; display: inline-block;">
