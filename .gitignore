@@ -1,6 +1,9 @@
 # static files collected with collectstatic in production
 staticfiles_production/
 
+# Static files on local env
+static_local/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
