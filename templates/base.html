@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
    <head>
+<<<<<<< HEAD
       <!-- Global site tag (gtag.js) - Google Analytics -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-FMZFMYPGRG"></script>
       <script>
@@ -11,6 +12,17 @@
 
         gtag('config', 'G-FMZFMYPGRG');
       </script>
+=======
+       <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FMZFMYPGRG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FMZFMYPGRG');
+    </script>
+>>>>>>> f7dce20a99438a826af57df6341c19c8a8eae400
       <meta charset="utf-8">
       {% block title %}
       {% endblock title %}
@@ -40,7 +52,7 @@
     <div data-collapse="medium" data-animation="default" data-duration="400" role="banner" class="navigation w-nav">
        <div class="navigation-container" style="max-height:170px;">
            <!--insert logo image-->
-          <a href="/" aria-current="page" class="logo w-inline-block w--current" style="max-width: 100%; height: auto;"><img src="{% static 'images/muffinmunchies-logos_transparent.png' %}" alt="muffinmunchies logo" style="max-width: 400px; max-height: 200px; widht: 100%; height: auto;" class="image-logo"/></a>
+          <a href="/" aria-current="page" class="logo w-inline-block w--current" style="max-width: 100%; height: auto;"><img src="{% static 'images/muffinmunchies-logos_transparent.png' %}" alt="muffinmunchies logo" style="max-width: 300px; max-height: 80px; height: auto;" class="image-logo"/></a>
           <nav role="navigation" class="nav-menu w-nav-menu">
              <a href="{% url 'homepage' %}" aria-current="page" class="navigation-link w-inline-block w--current">
                 <div class="navigation-hover" style="opacity: 0; height: 0px;"></div>
@@ -72,7 +84,7 @@
            <div class="container">
               <div class="top-section">
                   <!--Insert logo-->
-                 <div class="footer-small-text">© 2020 Muffin Munchies, all rights reserved</div>
+                 <div class="footer-small-text">© 2022 Muffin Munchies, all rights reserved</div>
               </div>
            </div>
            <div class="separator-footer">
